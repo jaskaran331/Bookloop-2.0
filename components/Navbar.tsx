@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { SunIcon } from './icons/SunIcon.tsx';
-import { MoonIcon } from './icons/MoonIcon.tsx';
-import { SearchIcon } from './icons/SearchIcon.tsx';
-import { mockUser1 } from '../data/mockData.ts';
-import type { Listing, CommunityPost } from '../types.ts';
-import { performSearch, type SearchResults } from '../services/geminiService.ts';
+import { SunIcon } from './icons/SunIcon';
+import { MoonIcon } from './icons/MoonIcon';
+import { SearchIcon } from './icons/SearchIcon';
+import { mockUser1 } from '../data/mockData';
+import type { Listing, CommunityPost } from '../types';
+import { performSearch, type SearchResults } from '../services/geminiService';
 
 interface NavbarProps {
   isDarkMode: boolean;

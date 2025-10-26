@@ -1,11 +1,11 @@
 import React from 'react';
-import { HomeIcon } from './icons/HomeIcon.tsx';
-import { MessagesIcon } from './icons/MessagesIcon.tsx';
-import { ProfileIcon } from './icons/ProfileIcon.tsx';
-import { CommunityIcon } from './icons/CommunityIcon.tsx';
-import { GeminiIcon } from './icons/GeminiIcon.tsx';
-import { BookIcon } from './icons/BookIcon.tsx';
-import { PAGES, type Page } from '../constants.ts';
+import { HomeIcon } from './icons/HomeIcon';
+import { MessagesIcon } from './icons/MessagesIcon';
+import { ProfileIcon } from './icons/ProfileIcon';
+import { CommunityIcon } from './icons/CommunityIcon';
+import { GeminiIcon } from './icons/GeminiIcon';
+import { BookIcon } from './icons/BookIcon';
+import { PAGES, type Page } from '../constants';
 
 interface SidebarProps {
   currentPage: Page;

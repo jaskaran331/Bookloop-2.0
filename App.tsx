@@ -1,18 +1,18 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import Sidebar from './components/Sidebar.tsx';
-import Navbar from './components/Navbar.tsx';
-import Login from './pages/Login.tsx';
-import Register from './pages/Register.tsx';
-import { mockListings, mockCommunityPosts } from './data/mockData.ts';
-import { PAGES, type Page } from './constants.ts';
-import Spinner from './components/Spinner.tsx';
+import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import { mockListings, mockCommunityPosts } from './data/mockData';
+import { PAGES, type Page } from './constants';
+import Spinner from './components/Spinner';
 
-const Marketplace = lazy(() => import('./pages/Marketplace.tsx'));
-const Messages = lazy(() => import('./pages/Messages.tsx'));
-const Profile = lazy(() => import('./pages/Profile.tsx'));
-const Community = lazy(() => import('./pages/Community.tsx'));
-const CreateListing = lazy(() => import('./pages/CreateListing.tsx'));
-const GeminiChat = lazy(() => import('./pages/GeminiChat.tsx'));
+const Marketplace = lazy(() => import('./pages/Marketplace'));
+const Messages = lazy(() => import('./pages/Messages'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Community = lazy(() => import('./pages/Community'));
+const CreateListing = lazy(() => import('./pages/CreateListing'));
+const GeminiChat = lazy(() => import('./pages/GeminiChat'));
 
 type AuthPage = 'Login' | 'Register';
 

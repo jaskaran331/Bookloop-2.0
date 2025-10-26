@@ -1,4 +1,4 @@
-import type { User, Listing, CommunityPost } from '../types.ts';
+import type { User, Listing, CommunityPost } from '../types';
 
 export const mockUser1: User = {
   id: 'user1',

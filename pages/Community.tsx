@@ -1,5 +1,5 @@
 import React from 'react';
-import type { CommunityPost } from '../types.ts';
+import type { CommunityPost } from '../types';
 
 const PostCard: React.FC<{ post: CommunityPost }> = ({ post }) => {
     return (

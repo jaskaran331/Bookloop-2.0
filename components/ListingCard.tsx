@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Listing } from '../types.ts';
+import type { Listing } from '../types';
 
 interface ListingCardProps {
   listing: Listing;

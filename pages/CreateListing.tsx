@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PAGES, type Page } from '../constants.ts';
+import { PAGES, type Page } from '../constants';
 
 interface CreateListingProps {
   setPage: (page: Page) => void;
