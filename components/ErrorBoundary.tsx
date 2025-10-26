@@ -8,7 +8,7 @@ interface State {
   hasError: boolean;
 }
 
-// FIX: Explicitly extending React.Component to resolve a TypeScript type error where 'this.props' was not recognized.
+// FIX: The ErrorBoundary class must extend React.Component to be a valid class component and have access to `this.props`.
 class ErrorBoundary extends React.Component<Props, State> {
   public state: State = {
     hasError: false,
