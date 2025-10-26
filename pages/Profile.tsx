@@ -13,7 +13,6 @@ const mockUser: User = {
 
 const mockListings: Listing[] = [
   { id: '1', title: 'Intro to Algorithms Textbook', description: 'Gently used, no markings.', price: 1200.00, category: 'Textbook', imageUrl: 'https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=400', seller: mockUser },
-  // FIX: Corrected typo from `mockU ser` to `mockUser`.
   { id: '4', title: 'Calculus III Solutions Manual', description: 'Official solutions manual.', price: 950.00, category: 'Textbook', imageUrl: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=400', seller: mockUser },
 ];
 
