@@ -27,9 +27,10 @@ const GeminiChat: React.FC = () => {
     e.preventDefault();
     if (input.trim() === '' || isLoading) return;
 
+    const userInput = input;
     const userMessage: Message = {
-      id: String(messages.length + 1),
-      text: input,
+      id: Date.now().toString(),
+      text: userInput,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       sender: 'user',
       avatarUrl: 'https://picsum.photos/seed/user/40/40'
@@ -41,21 +42,35 @@ const GeminiChat: React.FC = () => {
 
     try {
       const chat = getChatInstance();
-      const result = await chat.sendMessage({ message: input });
-      const response = result.text;
+      const stream = await chat.sendMessageStream({ message: userInput });
       
-      const aiMessage: Message = {
-        id: String(messages.length + 2),
-        text: response,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        sender: 'other',
-      };
-      setMessages(prev => [...prev, aiMessage]);
+      const aiMessageId = (Date.now() + 1).toString();
+      let firstChunkReceived = false;
+
+      for await (const chunk of stream) {
+        const chunkText = chunk.text;
+        if (!firstChunkReceived) {
+          // Create the AI message bubble with the first chunk
+          const aiMessage: Message = {
+            id: aiMessageId,
+            text: chunkText,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            sender: 'other',
+          };
+          setMessages(prev => [...prev, aiMessage]);
+          firstChunkReceived = true;
+        } else {
+          // Append subsequent chunks to the existing AI message
+          setMessages(prev => prev.map(msg => 
+            msg.id === aiMessageId ? { ...msg, text: msg.text + chunkText } : msg
+          ));
+        }
+      }
 
     } catch (error) {
       console.error("Error sending message to Gemini:", error);
       const errorMessage: Message = {
-        id: String(messages.length + 2),
+        id: (Date.now() + 1).toString(),
         text: 'Sorry, I encountered an error. Please try again.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         sender: 'other',
@@ -86,7 +101,7 @@ const GeminiChat: React.FC = () => {
              {msg.sender === 'user' && msg.avatarUrl && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />}
           </div>
         ))}
-         {isLoading && (
+         {isLoading && messages[messages.length - 1]?.sender === 'user' && (
             <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center flex-shrink-0">
                      <GeminiIcon className="w-5 h-5 text-primary-600 dark:text-primary-400" />

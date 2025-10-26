@@ -1,13 +1,12 @@
 import { GoogleGenAI, Chat, Type } from "@google/genai";
 import type { Listing, CommunityPost } from '../types';
 
-let chat: Chat | null = null;
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+let chat: Chat | null = null;
 
 export const getChatInstance = (): Chat => {
   if (!chat) {
-    const genAI = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
-    chat = genAI.chats.create({
+    chat = ai.chats.create({
       model: 'gemini-2.5-flash',
       config: {
         systemInstruction: 'You are BookLoop AI, a helpful assistant for students using the BookLoop platform. BookLoop is an online marketplace for students to buy and sell textbooks, notes, and equipment. Be friendly, helpful, and concise in your answers. You can help with study tips, explaining concepts, summarizing texts, and answering questions about course materials.',

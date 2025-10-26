@@ -25,6 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, p
     const handler = (e: MouseEvent) => {
       if (searchContainerRef.current && !searchContainerRef.current.contains(e.target as Node)) {
         setIsSearchFocused(false);
+        setDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handler);
@@ -122,9 +123,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, p
           </button>
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10">
-              <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700">Your Profile</a>
-              <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700">Settings</a>
-              <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700">Sign out</a>
+              <button className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700">Your Profile</button>
+              <button className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700">Settings</button>
+              <button className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700">Sign out</button>
             </div>
           )}
         </div>
