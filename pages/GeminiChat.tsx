@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { getChatInstance } from '../services/geminiService';
-import type { Message } from '../types';
-import { SendIcon } from '../components/icons/SendIcon';
-import { GeminiIcon } from '../components/icons/GeminiIcon';
+import { getChatInstance } from '../services/geminiService.ts';
+import type { Message } from '../types.ts';
+import { SendIcon } from '../components/icons/SendIcon.tsx';
+import { GeminiIcon } from '../components/icons/GeminiIcon.tsx';
 
 const GeminiChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([

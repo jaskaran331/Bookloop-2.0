@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ListingCard from '../components/ListingCard';
-import { SearchIcon } from '../components/icons/SearchIcon';
-import type { Listing } from '../types';
+import ListingCard from '../components/ListingCard.tsx';
+import { SearchIcon } from '../components/icons/SearchIcon.tsx';
+import type { Listing } from '../types.ts';
 
 const categories = ['All', 'Textbook', 'Notes', 'Equipment'];
 

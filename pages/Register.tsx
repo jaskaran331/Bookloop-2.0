@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookIcon } from '../components/icons/BookIcon';
+import { BookIcon } from '../components/icons/BookIcon.tsx';
 
 interface RegisterProps {
   onRegister: () => void;

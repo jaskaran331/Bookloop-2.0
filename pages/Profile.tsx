@@ -1,6 +1,6 @@
 import React from 'react';
-import type { User, Listing } from '../types';
-import ListingCard from '../components/ListingCard';
+import type { User, Listing } from '../types.ts';
+import ListingCard from '../components/ListingCard.tsx';
 
 const mockUser: User = {
   id: 'user1',

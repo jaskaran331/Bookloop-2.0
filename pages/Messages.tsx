@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import type { Message, User } from '../types';
-import { SendIcon } from '../components/icons/SendIcon';
+import type { Message, User } from '../types.ts';
+import { SendIcon } from '../components/icons/SendIcon.tsx';
 
 const mockConversations: { user: User, lastMessage: string, timestamp: string }[] = [
   {
