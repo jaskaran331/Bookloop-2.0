@@ -111,6 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, p
         <button
           onClick={toggleDarkMode}
           className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-full p-2"
+          aria-label={isDarkMode ? 'Activate light mode' : 'Activate dark mode'}
         >
           {isDarkMode ? <SunIcon className="w-6 h-6" /> : <MoonIcon className="w-6 h-6" />}
         </button>

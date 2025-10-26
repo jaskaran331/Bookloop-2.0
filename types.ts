@@ -23,11 +23,11 @@ export interface Message {
   text: string;
   timestamp: string;
   sender: 'user' | 'other';
-  avatarUrl: string;
+  avatarUrl?: string;
 }
 
 export interface CommunityPost {
-  id: string;
+  id:string;
   author: User;
   content: string;
   timestamp: string;

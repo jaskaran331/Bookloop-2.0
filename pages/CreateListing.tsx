@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { PAGES, type Page } from '../constants';
 
 interface CreateListingProps {
-  setPage: (page: 'Marketplace') => void;
+  setPage: (page: Page) => void;
 }
 
 const CreateListing: React.FC<CreateListingProps> = ({ setPage }) => {
@@ -15,7 +16,7 @@ const CreateListing: React.FC<CreateListingProps> = ({ setPage }) => {
     // Here you would typically handle form submission, e.g., API call
     console.log({ title, description, price, category });
     alert('Listing created successfully! (mock)');
-    setPage('Marketplace');
+    setPage(PAGES.MARKETPLACE);
   };
 
   return (
@@ -93,7 +94,7 @@ const CreateListing: React.FC<CreateListingProps> = ({ setPage }) => {
             </div>
           </div>
           <div className="flex justify-end space-x-3">
-            <button type="button" onClick={() => setPage('Marketplace')} className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-slate-600">
+            <button type="button" onClick={() => setPage(PAGES.MARKETPLACE)} className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-md shadow-sm hover:bg-gray-50 dark:hover:bg-slate-600">
               Cancel
             </button>
             <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-primary-600 border border-transparent rounded-md shadow-sm hover:bg-primary-700">

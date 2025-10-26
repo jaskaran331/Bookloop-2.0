@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
-import Marketplace from './pages/Marketplace';
-import Messages from './pages/Messages';
-import Profile from './pages/Profile';
-import Community from './pages/Community';
-import CreateListing from './pages/CreateListing';
-import GeminiChat from './pages/GeminiChat';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { mockListings, mockCommunityPosts } from './data/mockData';
+import { PAGES, type Page } from './constants';
+import Spinner from './components/Spinner';
 
-type Page = 'Marketplace' | 'Messages' | 'Profile' | 'Community' | 'CreateListing' | 'GeminiChat';
+const Marketplace = lazy(() => import('./pages/Marketplace'));
+const Messages = lazy(() => import('./pages/Messages'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Community = lazy(() => import('./pages/Community'));
+const CreateListing = lazy(() => import('./pages/CreateListing'));
+const GeminiChat = lazy(() => import('./pages/GeminiChat'));
+
 type AuthPage = 'Login' | 'Register';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authPage, setAuthPage] = useState<AuthPage>('Login');
-  const [currentPage, setCurrentPage] = useState<Page>('Marketplace');
+  const [currentPage, setCurrentPage] = useState<Page>(PAGES.MARKETPLACE);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
@@ -46,17 +48,17 @@ function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'Marketplace':
+      case PAGES.MARKETPLACE:
         return <Marketplace listings={mockListings} />;
-      case 'Messages':
+      case PAGES.MESSAGES:
         return <Messages />;
-      case 'Profile':
+      case PAGES.PROFILE:
         return <Profile />;
-      case 'Community':
+      case PAGES.COMMUNITY:
         return <Community posts={mockCommunityPosts} />;
-      case 'CreateListing':
+      case PAGES.CREATE_LISTING:
         return <CreateListing setPage={setCurrentPage} />;
-      case 'GeminiChat':
+      case PAGES.GEMINI_CHAT:
         return <GeminiChat />;
       default:
         return <Marketplace listings={mockListings} />;
@@ -74,7 +76,9 @@ function App() {
           posts={mockCommunityPosts}
         />
         <main className="flex-1 overflow-x-hidden overflow-y-auto p-6">
-          {renderPage()}
+          <Suspense fallback={<Spinner />}>
+            {renderPage()}
+          </Suspense>
         </main>
       </div>
     </div>

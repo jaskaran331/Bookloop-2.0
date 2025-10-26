@@ -11,7 +11,6 @@ const GeminiChat: React.FC = () => {
       text: 'Hello! I am BookLoop AI. How can I help you with your studies today?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       sender: 'other',
-      avatarUrl: '/gemini-avatar.png' // A placeholder
     }
   ]);
   const [input, setInput] = useState('');
@@ -50,7 +49,6 @@ const GeminiChat: React.FC = () => {
         text: response,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         sender: 'other',
-        avatarUrl: '/gemini-avatar.png'
       };
       setMessages(prev => [...prev, aiMessage]);
 
@@ -61,7 +59,6 @@ const GeminiChat: React.FC = () => {
         text: 'Sorry, I encountered an error. Please try again.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         sender: 'other',
-        avatarUrl: '/gemini-avatar.png'
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -86,7 +83,7 @@ const GeminiChat: React.FC = () => {
             <div className={`max-w-md lg:max-w-xl px-4 py-3 rounded-2xl ${msg.sender === 'user' ? 'bg-primary-500 text-white rounded-br-none' : 'bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200 rounded-bl-none'}`}>
               <p className="text-sm" style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</p>
             </div>
-             {msg.sender === 'user' && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />}
+             {msg.sender === 'user' && msg.avatarUrl && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover flex-shrink-0" />}
           </div>
         ))}
          {isLoading && (
@@ -115,7 +112,7 @@ const GeminiChat: React.FC = () => {
             className="w-full px-4 py-2 rounded-full bg-gray-100 dark:bg-slate-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             disabled={isLoading}
           />
-          <button type="submit" className="bg-primary-600 text-white rounded-full p-3 hover:bg-primary-700 transition-colors duration-200 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading}>
+          <button type="submit" className="bg-primary-600 text-white rounded-full p-3 hover:bg-primary-700 transition-colors duration-200 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed" disabled={isLoading} aria-label="Send message">
             <SendIcon className="w-5 h-5" />
           </button>
         </form>

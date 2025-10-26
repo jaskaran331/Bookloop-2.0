@@ -5,8 +5,7 @@ import { ProfileIcon } from './icons/ProfileIcon';
 import { CommunityIcon } from './icons/CommunityIcon';
 import { GeminiIcon } from './icons/GeminiIcon';
 import { BookIcon } from './icons/BookIcon';
-
-type Page = 'Marketplace' | 'Messages' | 'Profile' | 'Community' | 'CreateListing' | 'GeminiChat';
+import { PAGES, type Page } from '../constants';
 
 interface SidebarProps {
   currentPage: Page;
@@ -15,11 +14,11 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ currentPage, setCurrentPage }) => {
   const navItems = [
-    { name: 'Marketplace', icon: HomeIcon, page: 'Marketplace' as Page },
-    { name: 'Messages', icon: MessagesIcon, page: 'Messages' as Page },
-    { name: 'Community', icon: CommunityIcon, page: 'Community' as Page },
-    { name: 'Profile', icon: ProfileIcon, page: 'Profile' as Page },
-    { name: 'AI Assistant', icon: GeminiIcon, page: 'GeminiChat' as Page },
+    { name: 'Marketplace', icon: HomeIcon, page: PAGES.MARKETPLACE },
+    { name: 'Messages', icon: MessagesIcon, page: PAGES.MESSAGES },
+    { name: 'Community', icon: CommunityIcon, page: PAGES.COMMUNITY },
+    { name: 'Profile', icon: ProfileIcon, page: PAGES.PROFILE },
+    { name: 'AI Assistant', icon: GeminiIcon, page: PAGES.GEMINI_CHAT },
   ];
 
   return (
@@ -38,6 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, setCurrentPage }) => {
                 ? 'bg-primary-500 text-white'
                 : 'text-gray-600 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-slate-700'
             }`}
+            aria-current={currentPage === item.page ? 'page' : undefined}
           >
             <item.icon className="w-5 h-5 mr-3" />
             {item.name}
@@ -46,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, setCurrentPage }) => {
       </nav>
       <div className="px-4 py-6">
         <button
-          onClick={() => setCurrentPage('CreateListing')}
+          onClick={() => setCurrentPage(PAGES.CREATE_LISTING)}
           className="w-full bg-primary-600 text-white font-semibold py-3 rounded-lg hover:bg-primary-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-slate-800"
         >
           + Create Listing

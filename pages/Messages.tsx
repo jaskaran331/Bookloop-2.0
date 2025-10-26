@@ -68,7 +68,7 @@ const Messages: React.FC = () => {
               onClick={() => setSelectedConversation(convo)}
               className={`p-4 flex items-center cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-700 ${selectedConversation.user.id === convo.user.id ? 'bg-primary-50 dark:bg-slate-700/50' : ''}`}
             >
-              <img src={convo.user.avatarUrl} alt={convo.user.name} className="w-12 h-12 rounded-full object-cover mr-4" />
+              <img src={convo.user.avatarUrl} alt={convo.user.name} className="w-12 h-12 rounded-full object-cover mr-4" loading="lazy" />
               <div className="flex-1">
                 <div className="flex justify-between">
                   <h3 className="font-semibold">{convo.user.name}</h3>
@@ -90,12 +90,12 @@ const Messages: React.FC = () => {
         <div className="flex-1 p-6 overflow-y-auto space-y-4">
           {messages.map(msg => (
             <div key={msg.id} className={`flex items-end gap-3 ${msg.sender === 'user' ? 'justify-end' : ''}`}>
-              {msg.sender === 'other' && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover" />}
+              {msg.sender === 'other' && msg.avatarUrl && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover" loading="lazy" />}
               <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${msg.sender === 'user' ? 'bg-primary-500 text-white rounded-br-none' : 'bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200 rounded-bl-none'}`}>
                 <p className="text-sm">{msg.text}</p>
                 <p className={`text-xs mt-1 opacity-70 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>{msg.timestamp}</p>
               </div>
-              {msg.sender === 'user' && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover" />}
+              {msg.sender === 'user' && msg.avatarUrl && <img src={msg.avatarUrl} alt="avatar" className="w-8 h-8 rounded-full object-cover" loading="lazy" />}
             </div>
           ))}
           <div ref={messagesEndRef} />
@@ -109,7 +109,7 @@ const Messages: React.FC = () => {
               placeholder="Type a message..."
               className="w-full px-4 py-2 rounded-full bg-gray-100 dark:bg-slate-700 border border-transparent focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
-            <button type="submit" className="bg-primary-600 text-white rounded-full p-3 hover:bg-primary-700 transition-colors duration-200 flex-shrink-0">
+            <button type="submit" className="bg-primary-600 text-white rounded-full p-3 hover:bg-primary-700 transition-colors duration-200 flex-shrink-0" aria-label="Send message">
               <SendIcon className="w-5 h-5" />
             </button>
           </form>
