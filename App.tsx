@@ -20,6 +20,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authPage, setAuthPage] = useState<AuthPage>('Login');
   const [currentPage, setCurrentPage] = useState<Page>(PAGES.MARKETPLACE);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
@@ -67,7 +68,12 @@ function App() {
 
   return (
     <div className={`flex h-screen bg-gray-100 dark:bg-slate-900 text-gray-900 dark:text-gray-100`}>
-      <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Sidebar 
+        currentPage={currentPage} 
+        setCurrentPage={setCurrentPage}
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
       <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar 
           isDarkMode={isDarkMode} 
@@ -75,7 +81,7 @@ function App() {
           listings={mockListings}
           posts={mockCommunityPosts}
         />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto p-6">
+        <main className="flex-1 overflow-hidden">
           <Suspense fallback={<Spinner />}>
             {renderPage()}
           </Suspense>

@@ -21,7 +21,7 @@ const Marketplace: React.FC<MarketplaceProps> = ({ listings }) => {
   });
 
   return (
-    <div>
+    <div className="p-6 h-full overflow-y-auto">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Marketplace</h1>
         <p className="text-gray-500 dark:text-gray-400 mt-1">Buy and sell academic materials from fellow students.</p>
@@ -38,15 +38,15 @@ const Marketplace: React.FC<MarketplaceProps> = ({ listings }) => {
           />
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
         </div>
-        <div className="flex items-center gap-2 bg-white dark:bg-slate-800 rounded-lg p-1 border border-gray-300 dark:border-slate-700">
+        <div className="flex items-center gap-2">
           {categories.map(category => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
                 selectedCategory === category
-                  ? 'bg-primary-500 text-white'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-slate-700'
+                  ? 'bg-primary-600 text-white shadow'
+                  : 'text-gray-600 dark:text-gray-300 bg-white dark:bg-slate-800 hover:bg-primary-50 dark:hover:bg-slate-700 border border-gray-300 dark:border-slate-700'
               }`}
             >
               {category}

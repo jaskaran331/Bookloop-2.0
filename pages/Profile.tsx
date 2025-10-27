@@ -5,26 +5,27 @@ import ListingCard from '../components/ListingCard';
 const mockUser: User = {
   id: 'user1',
   name: 'Jaskaran Raju',
-  avatarUrl: 'https://picsum.photos/seed/user/128/128',
+  avatarUrl: 'https://placehold.co/128x128/e0e7ff/4f46e5?text=JR',
   campus: 'LKCTC',
   major: 'B.TECH AIML',
   listingsCount: 2,
 };
 
 const mockListings: Listing[] = [
-  { id: '1', title: 'Intro to Algorithms Textbook', description: 'Gently used, no markings.', price: 1200.00, category: 'Textbook', imageUrl: 'https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=400', seller: mockUser },
-  { id: '4', title: 'Calculus III Solutions Manual', description: 'Official solutions manual.', price: 950.00, category: 'Textbook', imageUrl: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=400', seller: mockUser },
+  { id: '1', title: 'Intro to Algorithms Textbook', description: 'Gently used, no markings.', price: 1200.00, category: 'Textbook', imageUrl: 'https://placehold.co/400x300/e0e7ff/4f46e5?text=Algorithms', seller: mockUser },
+  { id: '4', title: 'Calculus III Solutions Manual', description: 'Official solutions manual.', price: 950.00, category: 'Textbook', imageUrl: 'https://placehold.co/400x300/e0e7ff/4f46e5?text=Calculus', seller: mockUser },
 ];
 
 
 const Profile: React.FC = () => {
   return (
+    <div className="p-6 h-full overflow-y-auto">
     <div className="max-w-4xl mx-auto">
       <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
-        <div className="h-40 bg-primary-500"></div>
-        <div className="p-6 sm:p-8 flex items-start -mt-20">
-          <img src={mockUser.avatarUrl} alt={mockUser.name} className="w-32 h-32 rounded-full object-cover border-4 border-white dark:border-slate-800" />
-          <div className="ml-6 mt-16">
+        <div className="h-40 bg-gradient-to-br from-primary-500 to-primary-700"></div>
+        <div className="p-6 sm:p-8 flex flex-col items-center sm:flex-row sm:items-start -mt-20">
+          <img src={mockUser.avatarUrl} alt={mockUser.name} className="w-32 h-32 rounded-full object-cover border-4 border-white dark:border-slate-800 flex-shrink-0" />
+          <div className="ml-0 sm:ml-6 mt-4 sm:mt-16 text-center sm:text-left">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-white">{mockUser.name}</h1>
             <p className="text-gray-600 dark:text-gray-400">{mockUser.major} @ {mockUser.campus}</p>
           </div>
@@ -42,6 +43,7 @@ const Profile: React.FC = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

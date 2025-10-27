@@ -33,7 +33,7 @@ const GeminiChat: React.FC = () => {
       text: userInput,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       sender: 'user',
-      avatarUrl: 'https://picsum.photos/seed/user/40/40'
+      avatarUrl: 'https://placehold.co/40x40/e0e7ff/4f46e5?text=U'
     };
 
     setMessages(prev => [...prev, userMessage]);
@@ -82,7 +82,8 @@ const GeminiChat: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-100px)] max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-md">
+    <div className="p-6 h-full">
+    <div className="flex flex-col h-full max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-lg shadow-md">
        <div className="p-4 border-b border-gray-200 dark:border-slate-700 flex items-center">
           <GeminiIcon className="w-8 h-8 text-primary-500 mr-3" />
           <h3 className="font-semibold text-lg">BookLoop AI Assistant</h3>
@@ -132,6 +133,7 @@ const GeminiChat: React.FC = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

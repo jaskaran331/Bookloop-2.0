@@ -13,6 +13,13 @@ interface NavbarProps {
   posts: CommunityPost[];
 }
 
+const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+    }).format(amount);
+  };
+
 const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, posts }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -65,7 +72,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, p
         </div>
 
         {isSearchFocused && (searchQuery.length > 2) && (
-            <div className="absolute top-full mt-2 w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700 z-20 max-h-96 overflow-y-auto">
+            <div className="absolute top-full mt-2 w-full bg-white dark:bg-slate-800 rounded-lg shadow-2xl border border-gray-200 dark:border-slate-700 z-20 max-h-96 overflow-y-auto">
                 {isSearching ? (
                     <div className="p-4 text-center text-gray-500 dark:text-gray-400">Searching...</div>
                 ) : hasResults ? (
@@ -78,13 +85,13 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, p
                         )}
                         {searchResults.listings.length > 0 && (
                             <div className="p-2">
-                                <h4 className="px-2 pb-1 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Listings</h4>
+                                <h4 className="px-2 pt-2 pb-1 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Listings</h4>
                                 {searchResults.listings.map(l => (
-                                    <a key={l.id} href="#" className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700">
-                                        <img src={l.imageUrl} alt={l.title} className="w-10 h-10 rounded-md object-cover flex-shrink-0"/>
+                                    <a key={l.id} href="#" className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700/50 transition-colors">
+                                        <img src={l.imageUrl} alt={l.title} className="w-12 h-12 rounded-md object-cover flex-shrink-0"/>
                                         <div>
                                             <p className="font-semibold text-sm text-gray-800 dark:text-gray-200 truncate">{l.title}</p>
-                                            <p className="text-xs text-primary-600 dark:text-primary-400 font-bold">₹{l.price.toFixed(2)}</p>
+                                            <p className="text-sm text-primary-600 dark:text-primary-400 font-bold">{formatCurrency(l.price)}</p>
                                         </div>
                                     </a>
                                 ))}
@@ -92,9 +99,9 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode, listings, p
                         )}
                          {searchResults.posts.length > 0 && (
                             <div className="p-2 border-t border-gray-200 dark:border-slate-700">
-                                <h4 className="px-2 pt-1 pb-1 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Community Posts</h4>
+                                <h4 className="px-2 pt-2 pb-1 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Community Posts</h4>
                                 {searchResults.posts.map(p => (
-                                    <a key={p.id} href="#" className="block p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-700">
+                                    <a key={p.id} href="#" className="block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700/50 transition-colors">
                                         <p className="text-sm text-gray-700 dark:text-gray-300 truncate">{`"${p.content}"`}</p>
                                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">by {p.author.name}</p>
                                     </a>

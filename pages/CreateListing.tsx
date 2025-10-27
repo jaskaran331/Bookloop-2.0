@@ -20,6 +20,7 @@ const CreateListing: React.FC<CreateListingProps> = ({ setPage }) => {
   };
 
   return (
+    <div className="p-6 h-full overflow-y-auto">
     <div className="max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-6">Create a New Listing</h1>
       <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8">
@@ -103,6 +104,7 @@ const CreateListing: React.FC<CreateListingProps> = ({ setPage }) => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
