@@ -44,7 +44,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, setAuthPage }) => {
               />
             </div>
             <div>
-              <label htmlFor="password"className="sr-only">Password</label>
+              <label htmlFor="password" className="sr-only">Password</label>
               <input
                 id="password"
                 name="password"

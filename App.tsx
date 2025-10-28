@@ -16,7 +16,24 @@ const GeminiChat = lazy(() => import('./pages/GeminiChat'));
 
 type AuthPage = 'Login' | 'Register';
 
+const ApiKeyMissing = () => (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-slate-900 text-center p-4">
+        <h1 className="text-2xl font-bold text-red-500 mb-2">Configuration Required</h1>
+        <p className="text-gray-700 dark:text-gray-300 mb-4">
+            A Gemini API key has not been configured for this application.
+        </p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm">
+            Please ensure the <code>API_KEY</code> environment variable is set to enable AI-powered features.
+        </p>
+    </div>
+);
+
+
 function App() {
+  if (!process.env.API_KEY) {
+    return <ApiKeyMissing />;
+  }
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authPage, setAuthPage] = useState<AuthPage>('Login');
   const [currentPage, setCurrentPage] = useState<Page>(PAGES.MARKETPLACE);

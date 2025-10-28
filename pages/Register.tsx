@@ -59,7 +59,7 @@ const Register: React.FC<RegisterProps> = ({ onRegister, setAuthPage }) => {
               />
             </div>
             <div className="-mt-px">
-              <label htmlFor="password"className="sr-only">Password</label>
+              <label htmlFor="password" className="sr-only">Password</label>
               <input
                 id="password"
                 name="password"
